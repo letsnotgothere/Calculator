@@ -22,6 +22,23 @@ namespace Calculator
             buttonTable.Focus();
             this.currentValueBox.Text = "0";
             calculator = new Calculator();
+
+            this.KeyPress += new KeyPressEventHandler(Form1_KeyPress);
+            this.KeyDown += new KeyEventHandler(Form1_Key);
+
+        }
+
+        private void Form1_Key(object sender, KeyEventArgs e)
+        {
+            Keys k = e.KeyCode;
+            Boolean backspace = k == Keys.Back;
+            Boolean escape = k == Keys.Escape;
+            Boolean plus = k == Keys.Add;
+
+
+            if (backspace) backButton_Click(null, null);
+            if (escape) cancelButton_Click(null, null);
+
         }
 
         #region Private Helpers
@@ -62,6 +79,45 @@ namespace Calculator
 
         #endregion
 
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsNumber(e.KeyChar))
+                return;
+
+            switch (e.KeyChar)
+            {
+                case '0':
+                    zeroButton_Click(null, null);
+                    break;
+                case '1':
+                    oneButton_Click(null, null);
+                    break;
+                case '2':
+                    twoButton_Click(null, null);
+                    break;
+                case '3':
+                    threeButton_Click(null, null);
+                    break;
+                case '4':
+                    fourButton_Click(null, null);
+                    break;
+                case '5':
+                    fiveButton_Click(null, null);
+                    break;
+                case '6':
+                    sixButton_Click(null, null);
+                    break;
+                case '7':
+                    sevenButton_Click(null, null);
+                    break;
+                case '8':
+                    eightButton_Click(null, null);
+                    break;
+                case '9':
+                    nineButton_Click(null, null);
+                    break;
+            }
+        }
 
         private void backButton_Click(object sender, EventArgs e)
         {
